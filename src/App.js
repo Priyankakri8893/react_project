@@ -1,56 +1,55 @@
-import { useState } from "react";
 
 function App(){
+  let name= "Priyanka kumari"
+  let age= 23
   return(
     <>
-      <Input/>
+      <h1>My name is {name}</h1>
+      <Greet naam= {name} age= {age}/>
     </>
   )
 }
 
-function Input(){
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+function Age(props){
   return(
     <>
-      Number: <input type="number" value={inputValue} onChange={handleInputChange} />
-      <br/>
-      <br/>
-      <Table inputValue={inputValue} />
+      <h2>My sister age is {props.age}</h2>
     </>
   )
 }
 
-function Table({ inputValue }){
-  if (inputValue === "") {
-    return null;
+function Alertbuttom({message, children}){
+  return(
+    <>
+      <h1>{message}</h1>
+      <h1>{children}</h1>
+    </>
+  )
+}
+
+function Greet(props){
+
+  function hello(){
+    console.log('hello')
   }
+
   return(
     <>
-    {inputValue * 1}
+    <Alertbuttom message='How are you'/>
+    <Alertbuttom children='I am fine'/>
+
+    <Alertbuttom>What is your name</Alertbuttom>
     <br/>
-    {inputValue * 2}
     <br/>
-    {inputValue * 3}
-    <br/>
-    {inputValue * 4}
-    <br/>
-    {inputValue * 5}
-    <br/>
-    {inputValue * 6}
-    <br/>
-    {inputValue * 7}
-    <br/>
-    {inputValue * 8}
-    <br/>
-    {inputValue * 9}
-    <br/>
-    {inputValue * 10}
+
+      <h2>hello {props.naam}, how are you?</h2>
+      <h2>My age is {props.age}</h2>
+      <Age age= {props.age}/>
+      <br/>
+      <button onClick={hello}>Click me</button>
     </>
   )
 }
+
 
 export default App; 
