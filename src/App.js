@@ -1,27 +1,62 @@
 
 function App(){
-  let name= "Priyanka kumari"
   return(
     <>
-      <h1>My name is {name}</h1>
-      <Greet/>
+    <List/>
+    <Arrlist/>
+    <Input/>
     </>
   )
 }
 
-function Greet(){
+function List(){
+  let css= {color: 'red'}
+  return(
+    <ul style= {css}>
+    <h2>
+    <li>html</li>
+    <li>css</li>
+    <li>javascript</li>
+    <li>nodejs</li>
+    <li>reactjs</li>
+    </h2>
+    </ul>
+  )
+}
 
-  function hello(){
-    alert('hello')
+function Arrlist(){
+  const list= ['mongodb', 'aws', 'auth', 'redis']
+
+  return(
+    <ul>
+    <h1>list of skills</h1>
+      {
+        list.map( skill => <li key= {skill}>{skill}</li>)
+      }
+    </ul>
+  )
+}
+
+function Input(){
+
+  function handleName(event){
+    console.log(event.target.value)
+  }
+
+  function handlePhone(event){
+    console.log(event.target.value)
   }
 
   return(
     <>
-    <h1>{5+6} Priyanka</h1>
-    <button onClick={hello}>Click me</button>
+    Enter your name:
+    <input onChange= {handleName}/>
+    <br/>
+    <br/>
+    Enter your phone number:
+    <input onChange= {handlePhone}/>
     </>
   )
 }
-
 
 export default App; 
