@@ -1,62 +1,37 @@
+import { useState } from "react"
 
 function App(){
   return(
     <>
-    <List/>
-    <Arrlist/>
-    <Input/>
+    <Add/>
     </>
   )
 }
 
-function List(){
-  let css= {color: 'red'}
-  return(
-    <ul style= {css}>
-    <h2>
-    <li>html</li>
-    <li>css</li>
-    <li>javascript</li>
-    <li>nodejs</li>
-    <li>reactjs</li>
-    </h2>
-    </ul>
-  )
-}
 
-function Arrlist(){
-  const list= ['mongodb', 'aws', 'auth', 'redis']
+function Add(){
+  // let count= 1
+  const [data, setData]= useState(1)
+  const [value, setValue]= useState('hello')
 
-  return(
-    <ul>
-    <h1>list of skills</h1>
-      {
-        list.map( skill => <li key= {skill}>{skill}</li>)
-      }
-    </ul>
-  )
-}
-
-function Input(){
-
-  function handleName(event){
-    console.log(event.target.value)
+  function handleOnClick(){
+    setData(data+1)
+    // count= count+1
+    // console.log(count)
   }
 
-  function handlePhone(event){
-    console.log(event.target.value)
+  function hello(){
+    setValue(value+'hello')
   }
-
   return(
     <>
-    Enter your name:
-    <input onChange= {handleName}/>
-    <br/>
-    <br/>
-    Enter your phone number:
-    <input onChange= {handlePhone}/>
+    <h1>{data}</h1>
+    {/* <p>{count}</p> */}
+      <button onClick={handleOnClick}>add 1</button>
+      <h2>{value}</h2>
+      <button onClick={hello}>add 2</button>
     </>
   )
 }
 
-export default App; 
+export default App;
