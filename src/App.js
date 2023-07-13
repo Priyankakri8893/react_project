@@ -1,13 +1,27 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 function App(){
   return(
     <>
+    <Timer/>
     <Add/>
+    <Hook/>
+    
     </>
   )
 }
 
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  }, []);
+
+  return <h1>I've rendered {count} times!</h1>;
+}
 
 function Add(){
   // let count= 1
@@ -35,6 +49,29 @@ function Add(){
       <button onClick={hello}>add 2</button>
     </>
   )
+}
+
+
+function Hook(){
+  const [inputValue, setInputValue] = useState("");
+  const count = useRef(0);
+
+  useEffect(() => {
+    count.current = count.current + 1;
+  });
+
+  return (
+    <>
+    <br/>
+    <br/>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <h1>Render Count: {count.current}</h1>
+    </>
+  );
 }
 
 export default App;
