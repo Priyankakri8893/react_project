@@ -8,6 +8,10 @@ function App(){
   )
 }
 
+function fib(num){
+  if(num === 1 || num === 2) return 1
+  return fib(num-1)+fib(num-2)
+}
 
 function Add(){
   // let count= 1
@@ -20,11 +24,6 @@ function Add(){
 
   function handleOnClick2(){
     setValue(value * 5)
-  }
-
-  function fib(num){
-    if(num === 1 || num === 2) return 1
-    return fib(num-1)+fib(num-2)
   }
 
   const fibValue= useMemo( () => fib(data), [data])
