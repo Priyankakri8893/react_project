@@ -1,41 +1,27 @@
-import { useState, useCallback, useMemo } from "react"
+import './App.css'
+import Test from './Test'
 
 function App(){
   return(
     <>
     <Add/>
+    <Test/>
     </>
   )
 }
 
+const css= {
+  color: "blue",
+  backgroundColor: "lightblue"
+}
 
 function Add(){
-  // let count= 1
-  const [data, setData]= useState(1)
-  const [value, setValue]= useState(1)
 
-  function handleOnClick(){
-    setData(data+1)
-  }
-
-  function handleOnClick2(){
-    setValue(value * 5)
-  }
-
-  const usecall= useCallback(function fib(num){
-    if(num === 1 || num === 2) return 1
-    return fib(num-1)+fib(num-2)
-  }, [])
-
-  const fibValue= useMemo( () => usecall(data), [data, usecall])
   return(
     <>
-    <h1>{value}</h1>
-    <button onClick={handleOnClick2}>add 1</button>
-    <br/>
-    <br/>
-    <h1>{data} | {fibValue}</h1>
-      <button onClick={handleOnClick}>add 2</button>
+    <h1 style={css}>Inline styling</h1>
+    <h1 className='hi'>CSS stylesheets</h1>
+    <h1 style={{color: "red"}}>Inline styling</h1>
     </>
   )
 }
