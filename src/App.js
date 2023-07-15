@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react"
+import { useState, useCallback, useMemo } from "react"
 
 function App(){
   return(
@@ -8,10 +8,6 @@ function App(){
   )
 }
 
-function fib(num){
-  if(num === 1 || num === 2) return 1
-  return fib(num-1)+fib(num-2)
-}
 
 function Add(){
   // let count= 1
@@ -26,7 +22,12 @@ function Add(){
     setValue(value * 5)
   }
 
-  const fibValue= useMemo( () => fib(data), [data])
+  const usecall= useCallback(function fib(num){
+    if(num === 1 || num === 2) return 1
+    return fib(num-1)+fib(num-2)
+  }, [])
+
+  const fibValue= useMemo( () => usecall(data), [data, usecall])
   return(
     <>
     <h1>{value}</h1>
