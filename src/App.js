@@ -1,81 +1,68 @@
 import './App.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   return (
-    <div className="App-header">
       <Calculator/>
-    </div>
   );
 }
 
 function Calculator() {
-  const [result, setResult] = useState('');
+   const [result, setResult]= useState([])
 
+   const clickHandler=(event)=>{
+      setResult([...result, event.target.value].join(''))
+   }
+
+   const clickZero=(event)=>{
+      if(result.length == 0) setResult([])
+      else setResult([...result, event.target.value].join(''))
+   }
+
+   const clearScreen=()=>{
+      setResult([])
+   }
+
+   const clearOne=()=>{
+      setResult(result.slice(0,-1))
+   }
+
+   const calculate=()=>{
+      if (result.length === 0) {
+      setResult([]);
+    } else {
+      setResult([eval(result)]);
+    }
+   }
   return (
      <>
-        <div className='calculator'>
-           <Result value={result} />
-           <Result value={result} />
-           <Keyarea setResult={setResult} />
-        </div>
+    <div className="calc">
+     <input type='text' placeholder='0' id='answer' value={result}/>
+     <input type='button' value="9" className='button' onClick={clickHandler}/>
+     <input type='button' value="8" className='button' onClick={clickHandler}/>
+     <input type='button' value="7" className='button' onClick={clickHandler}/>
+     <input type='button' value="6" className='button' onClick={clickHandler}/>
+     <input type='button' value="5" className='button' onClick={clickHandler}/>
+     <input type='button' value="4" className='button' onClick={clickHandler}/>
+     <input type='button' value="3" className='button' onClick={clickHandler}/>
+     <input type='button' value="2" className='button' onClick={clickHandler}/>
+     <input type='button' value="1" className='button' onClick={clickHandler}/>
+     <input type='button' value="0" className='button' onClick={clickZero}/>
+     <input type='button' value="." className='button' onClick={clickHandler}/>
+     <input type='button' value="+" className='button' onClick={clickHandler}/>
+     <input type='button' value="-" className='button' onClick={clickHandler}/>
+     <input type='button' value="*" className='button' onClick={clickHandler}/>
+     <input type='button' value="/" className='button' onClick={clickHandler}/>
+     <input type='button' value="%" className='button' onClick={clickHandler}/>
+     <input type='button' value="x" className='button button1' onClick={clearOne}/>
+     <input type='button' value="C" className='button button1' onClick={clearScreen}/>
+     <input type='button' value="=" className='button button1' onClick={calculate}/>
+     </div>
      </>
   );
 }
 
-function Result({ value }) {
-   return (
-      <>
-         <div className='result'>
-            {value}
-         </div>
-      </>
-   )
-}
-function Keyarea({ setResult }) {
-  const handleKeyClick = (value) => {
-     setResult(value);
-  };
 
-  return (
-     <>
-        <div className='keyarea'>
-           <Keybox add={0} onClick={handleKeyClick} />
-           <Keybox add={4} onClick={handleKeyClick} />
-           <Keybox add={8} onClick={handleKeyClick} />
-           <Keybox add={12} onClick={handleKeyClick} />
-           <Keybox add={16} onClick={handleKeyClick} />
-        </div>
-     </>
-  );
-}
-
-function Keybox({ add, onClick }) {
-   return (
-      <>
-         <div className='keybox'>
-            <Key num={1 + add} onClick={onClick} />
-            <Key num={2 + add} onClick={onClick} />
-            <Key num={3 + add} onClick={onClick} />
-            <Key num={4 + add} onClick={onClick} />
-         </div>
-      </>
-   )
-}
-
-function Key({ num, onClick }) {
-   const handleClick = () => {
-      onClick(num);
-   };
-
-   return (
-      <>
-         <div className='key' onClick={handleClick}>
-            {num}
-         </div>
-      </>
-   )
-}
 
 
 export default App;
