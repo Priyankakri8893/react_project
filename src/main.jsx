@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import App from './App'
+import Sol from './Sol'
 import {
   createBrowserRouter,
   RouterProvider
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: 'I am priyanka kumari'
+  },
+  {
+    path: '/app',
+    element: <App/>
+  },
+  {
+    path: '/sol',
+    element: <Sol/>
   }
 ]);
 
