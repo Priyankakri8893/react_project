@@ -10,7 +10,7 @@ const UseState = () => {
     <>
       <Wrapper>
         <div className="container">
-          <button onClick={() => setCount(count + 1)}>
+          <button onClick={() => setCount(count + 2)}>
             <BiPlusMedical className="icon" />
           </button>
           <h1>{count}</h1>
