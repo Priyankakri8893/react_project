@@ -7,9 +7,9 @@ import reducer from "./reducer";
 const initialValue = 0;
 
 const ReducerHook = () => {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
-  // const [count, dispatch] = useReducer(reducer, initialValue);
+  const [count, dispatch] = useReducer(reducer, initialValue);
 
   return (
     <>
